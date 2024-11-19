@@ -2,10 +2,10 @@ package com.chandler.springcorebasic.member;
 
 public class MemberServiceImpl implements MemberService{ //TODO: 관례로 구현체가 1개일 경우 "interface명"에 postfix로 impl을 해줌
 
-    private final MemoryMemberRepository repository;
+    private final MemberRepository repository;
 
-    public MemberServiceImpl(MemoryMemberRepository memoryMemberRepository) {
-        this.repository = memoryMemberRepository;
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.repository = memberRepository;
     }
 
     @Override

@@ -2,12 +2,16 @@ package com.chandler.springcorebasic.order;
 
 import com.chandler.springcorebasic.member.Member;
 import com.chandler.springcorebasic.member.MemberRepository;
-import com.chandler.springcorebasic.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository repository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final MemberRepository repository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository repository, DiscountPolicy discountPolicy) {
+        this.repository = repository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

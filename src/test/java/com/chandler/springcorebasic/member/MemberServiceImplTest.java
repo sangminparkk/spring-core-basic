@@ -1,5 +1,7 @@
 package com.chandler.springcorebasic.member;
 
+import com.chandler.springcorebasic.config.AppConfig;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MemberServiceImplTest {
 
-    MemberServiceImpl memberService = new MemberServiceImpl();
+    private MemberService memberService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Test
     @DisplayName("회원 가입") //TODO: 데이터 비교는 최소 2~3개 할것

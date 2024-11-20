@@ -99,6 +99,19 @@ class AppConfigTest {
         assertEquals(2, beans.size()); //TODO: collection은 size로 검증하기
     }
 
+    @Test
+    @DisplayName("빈 설정 메타정보 확인하기")
+    void findBeanMetaInfo() {
+        String[] beanDefinitionNames = ac.getBeanDefinitionNames();
+        for (String beanDefinitionName : beanDefinitionNames) {
+            BeanDefinition beanDefinition = ((AnnotationConfigApplicationContext) ac).getBeanDefinition(beanDefinitionName);
+            if (beanDefinition.getRole() == ROLE_APPLICATION) {
+                System.out.println("beanDefinitionName " + beanDefinitionName + " / " + "beanDefinition" + beanDefinition);
+                System.out.println();
+            }
+        }
+    }
+
     @Configuration
     static class SameBeanConfig { // static : 외부 클래스에서만 동작한다는 의미
 

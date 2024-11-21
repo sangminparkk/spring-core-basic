@@ -1,9 +1,11 @@
 package com.chandler.springcorebasic.order;
 
 import com.chandler.springcorebasic.member.Member;
+import org.springframework.stereotype.Component;
 
 import static com.chandler.springcorebasic.member.Grade.VIP;
 
+@Component
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private final double discountPercent = 10;

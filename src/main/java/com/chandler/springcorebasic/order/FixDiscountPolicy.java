@@ -1,9 +1,11 @@
 package com.chandler.springcorebasic.order;
 
 import com.chandler.springcorebasic.member.Member;
+import org.springframework.stereotype.Component;
 
 import static com.chandler.springcorebasic.member.Grade.VIP;
 
+@Component
 public class FixDiscountPolicy implements DiscountPolicy {
 
     private int discountFixAmount = 1000; //초기 설정

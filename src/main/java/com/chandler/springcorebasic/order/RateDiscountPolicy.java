@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import static com.chandler.springcorebasic.member.Grade.VIP;
 
+@MainDiscountPolicy
 @Component
 public class RateDiscountPolicy implements DiscountPolicy {
 

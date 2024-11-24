@@ -1,5 +1,8 @@
 package com.chandler.springcorebasic.lifecycle;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 public class NetworkClient {
 
 
@@ -26,12 +29,14 @@ public class NetworkClient {
         System.out.println("close, url = " + url);
     }
 
+    @PostConstruct
     public void init() {
         System.out.println("NetworkClient.init");
         connect();
         call("초기화 메세지");
     }
 
+    @PreDestroy
     public void close() {
         System.out.println("NetworkClient.close");
         disconnect();

@@ -2,8 +2,8 @@ package com.chandler.springcorebasic.scope;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Provider;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 
@@ -20,7 +20,7 @@ public class SingletonWithPrototypeTest {
         ClientBean clientBean2 = ac.getBean(ClientBean.class);
 
         assertEquals(1, clientBean1.logic());
-        assertEquals(2, clientBean2.logic()); // 의도한게 아님
+        assertEquals(1, clientBean2.logic()); // 의도한대로
 
         ac.close();
     }
@@ -28,15 +28,14 @@ public class SingletonWithPrototypeTest {
     @Scope
     static class ClientBean {
 
-        private final PrototypeBean prototypeBean;
+        private final Provider<PrototypeBean> prototypeBeanProvider;
 
-        @Autowired
-        public ClientBean(PrototypeBean prototypeBean) {
-            this.prototypeBean = prototypeBean;
+        public ClientBean(Provider<PrototypeBean> prototypeBeanProvider) {
+            this.prototypeBeanProvider = prototypeBeanProvider;
         }
 
         public int logic() {
-
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }

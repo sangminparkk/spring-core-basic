@@ -10,6 +10,7 @@ import com.chandler.springcorebasic.order.OrderService;
 import com.chandler.springcorebasic.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class AppConfig {
@@ -24,6 +25,7 @@ public class AppConfig {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
+    @Primary
     @Bean
     public MemberRepository memberRepository() {
         return new MemoryMemberRepository();

@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+import static org.springframework.context.annotation.ScopedProxyMode.TARGET_CLASS;
+
 @Component
-@Scope(value = "request")
+@Scope(value = "request", proxyMode = TARGET_CLASS)
 @Setter
 public class MyLogger {
 
